@@ -1,0 +1,9 @@
+.d-inline
+  = link_to fa_icon('facebook'), @user.full_fb, class: "muted-button", title: t(:facebook), target: "_blank" if @user.has_sm(@user.fb)
+  = link_to fa_icon('youtube'), @user.full_yt, class: "muted-button", title: t(:youtube), target: "_blank" if @user.has_sm(@user.yt)
+  = link_to fa_icon('instagram'), @user.full_ig, class: "muted-button", title: t(:instagram), target: "_blank" if @user.has_sm(@user.ig)
+  = link_to fa_icon('twitter'), @user.full_tw, class: "muted-button", title: t(:twitter), target: "_blank" if @user.has_sm(@user.tw)
+  button type="button" data-toggle="modal" data-target="#AddSm"
+    = fa_icon 'plus', class: "muted-button", title: t(:add_sm) if @user.id == current_user.id
+
+  = render 'users/social_media_modal'

@@ -1,0 +1,68 @@
+@import "config/colors";
+
+.position-ranking{
+  color: $dark-blue;
+  font-size: 30px;
+}
+
+.ranking-container{
+  margin-bottom: 75px;
+  border-radius: 25px;
+  border: 4px solid $beige;
+  padding: 20px;
+  position: relative;
+}
+
+.ranking-title{
+  position: absolute;
+  top: -25px;
+  background-color: white;
+  padding: 5px;
+}
+
+.ranking-button{
+  position: absolute;
+  top: 5px;
+  right: 10px;
+  background-color: transparent;
+  padding: 5px;
+}
+
+.column-week-1{
+  padding-top: 5px;
+}
+
+.column-week-rest{
+  -moz-transform: scale(0.7);
+  -webkit-transform: scale(0.7);  /* Chrome, Opera 15+, Safari 3.1+ */
+  -ms-transform: scale(0.7);  /* IE 9*/
+  transform: scale(0.7);
+}
+
+.top-songs-image{
+  margin-left: 10px;
+  width: 60px !important;
+}
+
+.week-link{
+  font-size: 18px !important;
+}
+
+.popular-row-rest{
+  -moz-transform: scale(0.95);
+  -webkit-transform: scale(0.95);  /* Chrome, Opera 15+, Safari 3.1+ */
+  -ms-transform: scale(0.95);  /* IE 9*/
+  transform: scale(0.95);
+  margin-top: 10px;
+}
+
+.popular-music-card{
+  padding: 10px;
+  margin: 20px 40px;
+}
+
+.popular-user-container{
+  font-size: 20px;
+  text-align: center;
+  padding: 0;
+}

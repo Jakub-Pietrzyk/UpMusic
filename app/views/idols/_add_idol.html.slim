@@ -1,0 +1,34 @@
+  .modal.fade#AddIdol[tabindex="-1" role="dialog" aria-labelledby="Add idol" aria-hidden="true"]
+    .modal-dialog.modal-dialog-centered.modal-lg[role="document"]
+      .modal-content
+        .modal-header
+          h5[class="modal-title"] = t(:add_idol)
+          button type="button" data-dismiss="modal"
+            = fa_icon 'remove', class: "blue-button"
+
+        .modal-body
+          = simple_form_for([@user, @user.idols.build]) do |f|
+            = f.error_notification
+
+            .row.align-items.center
+              .col-2
+                = f.label t(:idol_name)
+              .col-10
+                = f.input :name, required: true, label: false
+                = f.hint t(:required), class: "hint-format-idol";
+            br
+            .row.align-items-center
+              .col-2
+                = f.label t(:idol_page)
+              .col-10
+                .row.align-items-center
+                  = f.hint Idol::WIKIPEDIA, class: "text-muted"
+                  = f.input :page, label: false;
+            br
+            .row.align-items-center
+              .col-2
+                = f.label t(:idol_image)
+              .col-10
+                = f.input :image, as: :file, label: false, input_html: {class: "file-button"}
+            = f.button :button, class: "submit-button" do
+              = fa_icon("check", class: "small-button")

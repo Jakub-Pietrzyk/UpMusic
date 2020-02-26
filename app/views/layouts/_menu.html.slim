@@ -1,0 +1,56 @@
+nav class="navbar navbar-expand-lg scrolling-navbar main-menu"
+  = link_to home_path, class: "navbar-brand", title: t(:main_page) do
+    = t(:web_name)
+
+  button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#basicExampleNav" aria-controls="basicExampleNav" aria-expanded="false" aria-label="Toggle navigation"
+    span class="navbar-toggler-icon"
+
+  .collapse.navbar-collapse#basicExampleNav
+
+    ul class="navbar-nav ml-auto nav-flex-icons align-items-center"
+
+      li class="nav-item"
+        = link_to fa_icon('search'), search_path, class: 'nav-link', title: t(:search)
+
+      li class="nav-item"
+        = link_to fa_icon('university'), hall_of_fame_musics_path, class: 'nav-link', title: t(:hall_of_fame)
+
+      li class="nav-item"
+        = link_to fa_icon('users'), super_posts_posts_path, class: 'nav-link', title: t(:creator_posts)
+
+      li class="nav-item dropdown"
+        a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" title =  "#{t(:notifications)}"
+          = fa_icon 'bell';
+          - if current_user.notifications_to_display.count > 0
+            .notification-count = current_user.notifications_to_display.count
+        .dropdown-menu.dropdown-menu-right.dropdown-primary aria-labelledby="navbarDropdownMenuLink"
+          h6 class="dropdown-header"
+            .row
+              .col = t(:notifications)
+              .col.text-right = link_to t(:delete_all), user_destroy_all_notifications_path(current_user), method: :delete, class: "text-link" if current_user.notifications.count > 0;
+          - current_user.notifications_to_display.each do |notification|
+            .dropdown-item
+              = link_to (notification[0] + " | "), Music.find(notification[1].music), class: "text-link"
+              = link_to fa_icon('remove'), notification_path(notification[1]) , method: :delete, class: "blue-button"
+
+      - if can?(:new, Music) or can?(:new, Post)
+        li class="nav-item dropdown"
+          a class="nav-link dropdown-toggle adding" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" title= "#{t(:add)}" = fa_icon 'plus';
+          .dropdown-menu.dropdown-menu-right.dropdown-primary aria-labelledby="navbarDropdownMenuLink"
+            h6 class="dropdown-header" = t(:add)
+            - if current_user.superadmin? == false
+              = link_to t(:add_music), new_music_path, class: "dropdown-item" if can?(:new, Music)
+            = link_to t(:add_post), new_post_path, class: "dropdown-item" if can?(:new, Post)
+
+      li class="nav-item dropdown avatar"
+        a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-333" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" name="profile" = image_tag(current_user.avatar.url(:thumb), class: "rounded-circle z-depth-0", title: "#{current_user.name}")
+        .dropdown-menu.dropdown-menu-right.dropdown-default aria-labelledby="navbarDropdownMenuLink-333"
+          - if current_user.superadmin? == false
+
+            h6 class="dropdown-header" = current_user.name
+            = link_to t(:profile), user_path(current_user.id), class: "dropdown-item"
+            = link_to t(:user_edit), edit_user_registration_path(current_user), class: 'dropdown-item'
+
+
+            .dropdown-divider
+          = link_to t(:log_out), destroy_user_session_path, method: :delete, class: "dropdown-item"

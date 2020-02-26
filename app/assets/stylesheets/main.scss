@@ -1,0 +1,28 @@
+@import "config/colors";
+@import "config/mixins";
+
+.image-link{
+  color: $dark-blue;
+  will-change: color;
+  -webkit-transition: color 0.5s;
+  transition: color 0.3s;
+  &:hover{
+    color: $lighter-dark-blue;
+    text-decoration: none;
+  }
+}
+
+.custom-hr{
+  border: 2px solid $beige;
+  margin: 20px 0;
+  width: 95vw;
+}
+
+.text-link{
+  @include title-link($dark-blue);
+}
+
+.image-border{
+  border: 1px solid $dark-blue;
+  margin-top: 10px;
+}

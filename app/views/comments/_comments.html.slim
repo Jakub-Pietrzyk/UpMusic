@@ -1,0 +1,11 @@
+- music.comments.each do |comment|
+  - if comment.user_id != nil;
+    .ml-5
+      .row
+        .text-muted.comment-date.col-6 = comment.created_at.strftime("%d-%m-%Y %H:%M")
+        = link_to fa_icon('remove'), [comment.music, comment], method: :delete, class: "col-6 text-right blue-button", title: t(:delete_comment) if can? :destroy, comment
+      .comment-show.row
+        .col-1= image_tag(comment.user.avatar.url(:thumb), class: "rounded-circle z-depth-0")
+        .col-11
+          strong = link_to comment.user.name + ": ", user_path(comment.user), class: "text-link", title: "#{comment.user.name}"
+          = comment.body

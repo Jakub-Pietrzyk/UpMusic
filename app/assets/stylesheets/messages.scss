@@ -1,0 +1,28 @@
+@import "config/colors";
+@import "config/mixins";
+
+.message-date{
+  @include small-date();
+  display: none;
+}
+
+.message-container{
+  padding: 10px;
+  margin: 11px 5px;
+  border-radius: 25px;
+  border: 2px solid $beige;
+  display: block;
+  float: left;
+  clear: left;
+  word-wrap: break-word;
+  word-break: break-all;
+  position: relative;
+  &:hover {
+    .message-date{
+      white-space: nowrap;
+      position: absolute;
+      top: -20px;
+      display: block;
+    }
+  }
+}

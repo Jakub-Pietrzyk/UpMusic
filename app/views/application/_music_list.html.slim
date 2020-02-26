@@ -1,0 +1,10 @@
+- collection.each do |music|
+  .media.song-card[title = "#{music.title} | #{music.user.name}"]
+    .media-left.mr-3
+      img[src="#{music.image.url(:thumb)}" class="rounded-circle z-depth-0"]
+    .media-body
+      .card-title.mr-3.music-title.row
+        h4.col-11 = link_to music.title, music, class: "text-link", title: t(:show)
+        .col-1.text-right = link_to fa_icon('remove'), music, method: :delete, class: "blue-button", title: t(:delete), id: "delete_#{music.id}" if can? :destroy, music
+      .card-text
+        = link_to music.user.name, user_path(music.user), class: "text-muted user-name-muted";

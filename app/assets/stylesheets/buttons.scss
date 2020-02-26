@@ -1,0 +1,74 @@
+@import "config/colors";
+@import "config/mixins";
+
+button{
+  border: none;
+  background-color: transparent;
+  padding: 0;
+}
+
+.small-button{
+  padding: 3px;
+  margin: 3px;
+  text-decoration: none;
+  background-color: $beige !important;
+  color: $dark-blue !important;
+  border: 2px solid $beige;
+  border-radius: 10px !important;
+  will-change: background-color;
+  -webkit-transition: background-color 0.5s;
+  transition: background-color 0.5s;
+  &:hover{
+    background-color: $beige-light !important;
+    text-decoration: none;
+    color: $dark-blue;
+  }
+}
+
+.observe-button{
+  @include observe-button($beige);
+}
+
+.unobserve-button{
+  @include observe-button($muted);
+  opacity: 0.6;
+}
+
+.submit-button{
+  margin: 0px 7px;
+  padding: 5px 10px;
+  width: auto !important;
+}
+
+.blue-button{
+  color: $dark-blue;
+  will-change: color;
+  -webkit-transition: color 0.5s;
+  transition: color 0.3s;
+  &:hover{
+    text-decoration: none;
+    color: $lighter-dark-blue;
+  }
+}
+
+.form-button{
+  width: 120px !important;
+}
+
+.muted-button{
+  margin: 1px 5px;
+  color: $muted;
+  opacity: 0.7;
+  padding: 0;
+  will-change: opacity;
+  -webkit-transition: opacity 0.5s;
+  transition: opacity 0.5s;
+  &:hover{
+    color: $muted;
+    opacity: 1;
+  }
+}
+
+.more-button{
+  margin-left: 40px;
+}

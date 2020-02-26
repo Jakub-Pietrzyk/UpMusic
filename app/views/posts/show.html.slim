@@ -1,0 +1,10 @@
+.text-muted.text-left = @post.created_at.strftime("%d-%m-%Y")
+.text-center.post-show-form
+  h3 class="post-title" = @post.title
+  .text-muted.text-left.pb-3 = @post.user.name
+  p  = @post.body
+  p = image_tag(@post.image.url(:original), class: "image-border") if @post.image.present?
+
+  p
+    = link_to fa_icon('edit', class: "small-button"), edit_post_path(@post) if can? :edit, @post
+    = link_to fa_icon('remove', class: "small-button"), @post, method: :delete if can? :destroy, @post

@@ -1,0 +1,26 @@
+button type="button" data-toggle="modal" data-target="#backgroundChange"
+  = fa_icon 'edit', class: "fa-2x blue-button", title: t(:change_bg) if can?(:change_background, @user)
+
+
+.modal.fade#backgroundChange tabindex="-1" role="dialog" aria-labelledby="Change background" aria-hidden="true"
+  .modal-dialog.modal-dialog-centered.modal-lg role="document"
+    .modal-content
+      .modal-header
+        h5 class="modal-title" = t(:change_bg)
+        button type="button" data-dismiss="modal"
+          = fa_icon 'remove', class: "blue-button"
+
+      .modal-body
+        = simple_form_for :user, url: change_background_user_path(@user), method: :post do |f|
+          = f.error_notification
+
+          .row.align-items-center
+            .col-2
+              = f.label t(:bg), required: false;
+            .col-10
+              .row.align-items-center
+                .col-10.p-0 = f.input :background, as: :file, label: false, input_html: {class: "file-button"}
+          br
+
+          = f.button :button, class: "submit-button" do
+            = fa_icon("check", class: "small-button")

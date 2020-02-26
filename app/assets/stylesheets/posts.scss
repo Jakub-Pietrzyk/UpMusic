@@ -1,0 +1,24 @@
+@import "config/colors";
+@import "config/mixins";
+
+.post-show-form{
+  @include show-container();
+  word-wrap: break-word;
+}
+
+.post-title{
+  font-size: 50px;
+  border-bottom: 3px solid $beige;
+}
+
+.post-body{
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  padding-bottom: 10px;
+}
+
+.super-posts{
+  width: 60vw;
+  margin: 30px auto;
+}

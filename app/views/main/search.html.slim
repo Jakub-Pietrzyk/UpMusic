@@ -1,0 +1,28 @@
+.text-center
+  .p-4
+    = form_tag search_path, method: :get do
+      p
+        = text_field_tag :search, params[:search], class: "searcher-form"
+        = button_tag(type: "submit") do
+          = fa_icon('search', class: 'small-button')
+        = link_to "*", search_path(search: "*"), class: "small-button" if current_user.superadmin?
+.search-container
+  - if @users == [] and @music == []
+    .text-center
+      = t(:nil_search)
+  - if @users != []
+    - if @users.size <= 12
+      .row
+        = render 'observations/all_observations', collection: @users[0...13]
+    - else
+      .row
+        = render 'observations/all_observations', collection: @users[0...12]
+        button class="col-1" type="button" data-toggle="modal" data-target="#AllObservations"
+          = fa_icon 'ellipsis-h', class: "fa-2x blue-button", title: t(:show_all)
+        = render 'observations/all_observations_modal', collection: @users
+  - if @music != []
+    = render 'music_list', collection: @music[0...10]
+    - if @music.size > 10;
+      button class="blue-button more-button" type="button" data-toggle="modal" data-target="#AllMusic"
+        = fa_icon 'ellipsis-h', class: "fa-2x blue-button", title: t(:show_all)
+      = render 'musics/all_music_modal', collection: @music

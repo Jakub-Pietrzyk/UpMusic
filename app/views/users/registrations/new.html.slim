@@ -1,0 +1,40 @@
+h2 = t(:register)
+
+.m-4
+  = simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
+    = f.error_notification
+
+
+    .row.mb-2
+      .col-2.p-0 = f.label t(:username), class: "form-label"
+      .col-10.p-0
+        = f.input :name, placeholder: t(:username_placeholder), required: true, label: false, input_html: {id: "username"}
+        = f.hint t(:required), class: "hint-format";
+
+    .row.mb-2
+      .col-2.p-0 = f.label t(:avatar), class: "form-label"
+      .col-10.p-0 = f.input :avatar, as: :file, required: false, label: false, input_html: {class: "file-button"}
+
+    .row.mb-2
+      .col-2.p-0 = f.label t(:email_form), class: "form-label"
+      .col-10.p-0
+        = f.input :email, autofocus: true, required: true, label: false, placeholder: t(:email_placeholder), input_html: { autocomplete: t(:email), id: "email" }
+        = f.hint t(:required), class: "hint-format";
+
+    .row.mb-2
+      .col-2.p-0 = f.label t(:password_form), class: "form-label"
+      .col-10.p-0.align-items-top
+        = f.input :password, required: true, input_html: { autocomplete: t(:new_password), id: "password" }, label: false, placeholder: t(:password_placeholder);
+        = f.hint t(:required), class: "hint-format";
+        - if @minimum_password_length
+          button type="button" class="blue-button" data-container="body" data-toggle="popover" data-placement="right" data-content = "#{t(:password_hint, length: @minimum_password_length)}" = fa_icon('info-circle')
+
+    .row.mb-2
+      .col-2.p-0 = f.label t(:password_confirm), class: "form-label"
+      .col-10.p-0
+        = f.input :password_confirmation, required: true, input_html: { autocomplete: t(:new_password), id: "confirm password" }, label: false, placeholder: t(:confirm_password_placeholder)
+        = f.hint t(:required), class: "hint-format";
+    = f.hidden_field :role, value: params[:role]
+    = f.button :submit, class: "small-button form-button"
+
+= render "devise/shared/links"

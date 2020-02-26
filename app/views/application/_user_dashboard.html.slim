@@ -1,0 +1,26 @@
+- if @user.recommendations != []
+
+  .row.user-row.fames-section
+    .col-md
+        h5 class="user-title-fames" = t(:recommendations)
+        .row
+          = render 'fames_upvotes', collection: @user.recommendations_to_display
+
+.row.user-row
+  .col-md
+    h5 class="user-title" = t(:music)
+    = render 'music_list', collection: @user.musics[0...3]
+    = link_to fa_icon('ellipsis-h'), url_for(controller: 'musics', action: 'index', user_id: @user.id), class: 'blue-button more-button', title: t(:more_music) if @user.musics.count > 3
+
+.row.user-row
+  .col-md
+    h5 class="user-title" = t(:posts)
+    .card-columns
+      = render 'post_list', collection: @user.posts[0...3]
+    = link_to fa_icon('ellipsis-h'), url_for(controller: 'posts', action: 'index', user_id: @user.id), class: 'blue-button', title: t(:more_posts) if @user.posts.count > 3
+
+
+- if @user.id != current_user.id and @user.idols.count > 0
+  = render 'idols/idols'
+- elsif @user.id == current_user.id
+  = render 'idols/idols'

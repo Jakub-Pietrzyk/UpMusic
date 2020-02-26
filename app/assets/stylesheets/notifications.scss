@@ -1,0 +1,17 @@
+@import "config/colors";
+
+.notification-bell{
+  position: fixed;
+}
+
+.notification-count{
+  position: absolute;
+  font-size: 10px;
+  color: white;
+  background-color: red;
+  border-radius: 40px;
+  padding: 1px 2px;
+  margin: 0px;
+  top: 0px; right:15px;
+  z-index: 20;
+}

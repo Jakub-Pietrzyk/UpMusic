@@ -1,0 +1,17 @@
+h2.text-center.hall-title = t(:hall_oficial)
+- @musics.each_with_index do |music, index|
+  .row.hall-row
+    div class="#{if index == 0 then "hall-1"}"
+      .media
+        .media-left.mr-3
+          img src="#{music.image.url(:play)}" class="rounded-circle z-depth-0 hall-image"
+        .media-body
+          .card-title.mr-3.music-title
+            h4 class="d-inline" = link_to ((index + 1).to_s + ". " + music.title), music, class: "text-link";
+            .d-inline.text-muted = " | " + music.upvotes.count.to_s + " upvotes"
+          .card-text
+            = link_to music.user.name, user_path(music.user), class: "text-muted user-name-muted";
+  - if index == 0
+    .custom-hr
+  - else;
+    hr

@@ -1,0 +1,36 @@
+/= javascript_include_tag 'musics', 'data-turbolinks-track': 'reload';
+.text-muted.text-left
+  = @music.created_at.strftime("%d-%m-%Y")
+  - if @music.genre
+    .d-block
+      = "Genre: "
+      = link_to @music.genre, show_by_genre_musics_path(genre: @music.genre), class: "text-muted user-name-muted", title: "#{@music.genre}";
+.text-center.music-show-form
+  .music-container
+    = image_tag(@music.image.url(:play), class: "music-image-play rounded-circle z-depth-0")
+    h2 class="music-title-play" = @music.title
+    = link_to @music.user.name, user_path(@music.user), class: "text-muted user-name-muted"
+    - if @music.features.any?
+      .d-block = music_features_links(@music)
+    .audio-player
+      = audio_tag(@music.file.url, autoplay: false, id: "audio-player", controls: 'controls')
+    p
+      = link_to fa_icon('arrow-left', class: "small-button"), user_path(@music.user_id), title: t(:back)
+      = link_to fa_icon('edit', class: "small-button"), edit_music_path(@music), title: t(:edit), id: "edit-music" if can? :edit, @music
+      = link_to fa_icon('remove', class: "small-button"), @music, method: :delete, title: t(:delete), id: "music-video" if can? :destroy, @music
+      = link_to fa_icon('youtube', class: "small-button"), Music::YOUTUBE + @music.yt_video, title: t(:music_video), target: "_blank" if @music.yt_video.present?
+
+      - pre_upvote = @music.upvotes.each.find { |upvote| upvote.user_id == current_user.id}
+      - if pre_upvote
+        = link_to fa_icon('chevron-circle-down', class: "small-button"), music_upvote_path(@music, pre_upvote), method: :delete, title: t(:downvote), id: "downvote"
+      - else
+        = link_to fa_icon('chevron-circle-up', class: "small-button"), music_upvotes_path(@music), method: :post, title: t(:upvote), id: "upvote"
+
+      span = @music.upvotes.count.to_s + ' upvotes'
+      .d-block.text-muted = @music.visited.round.to_s + " visits"
+    p  = @music.note
+  .comment-container.text-left
+    h3.m-3 = t(:comments)
+    = render 'comments/form', music: @music if can?(:create, Comment)
+
+    = render 'comments/comments', music: @music

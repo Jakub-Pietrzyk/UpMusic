@@ -1,0 +1,6 @@
+.dropdown.d-inline
+  a class="dropdown-toggle small-button" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" title= "#{t(:ur_messages)}" = fa_icon 'envelope';
+  .dropdown-menu.dropdown-menu-right.dropdown-primary aria-labelledby="navbarDropdownMenuLink"
+    h6 class="dropdown-header" = t(:ur_messages)
+    - @chatrooms.each do |chatroom|
+      = link_to chatroom.sender.name, chatroom, class: "dropdown-item"

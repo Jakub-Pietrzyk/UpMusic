@@ -1,0 +1,4 @@
+- collection.each do |fame|
+  .col-1.text-center.fame-recommendation
+    = image_tag(fame.avatar.url(:thumb), class: "rounded-circle z-depth-0", title: fame.name)
+    .d-block = fame.name

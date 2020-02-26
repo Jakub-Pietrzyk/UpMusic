@@ -1,0 +1,61 @@
+@import "colors";
+
+.navbar-brand{
+  text-decoration: none;
+  color: $beige;
+  font-size: 25px;
+  -webkit-transition: color 0.3s;
+  transition: color 0.3s;
+  &:hover{
+    color: $beige-light;
+  }
+}
+
+.nav-link{
+  color: $beige;
+  &:hover{
+    color: $beige;
+  }
+}
+
+.dropdown-menu{
+  background-color: $beige;
+}
+
+.dropdown-item{
+  color: $dark-blue;
+  -webkit-transition: background-color 0.3s;
+  transition: background-color 0.3s;
+  &:hover{
+    background-color: $beige-light;
+    color: $dark-blue;
+  }
+}
+
+.card{
+  border-color: $beige;
+  color: $dark-blue;
+}
+
+.card-header{
+  border-bottom-color: $beige;
+  background-color: $beige;
+  color: $dark-blue;
+}
+
+.modal-header{
+  background-color: $beige;
+  border-bottom: 1px solid $beige;
+  border-top-right-radius: 20px;
+  border-top-left-radius: 20px;
+}
+
+.modal-content{
+  border-radius: 25px;
+  border: 2px solid $beige !important;
+  color: $dark-blue;
+}
+
+div.input{
+  display: inline;
+}

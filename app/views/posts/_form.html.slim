@@ -1,0 +1,17 @@
+.m-4
+  = simple_form_for(@post) do |f|
+    = f.error_notification
+    .row.mb-2
+      .col-2.p-0 = f.label t(:post_title_form), class: "form-label"
+      .col-10.p-0
+        = f.input :title, label: false, required: true
+        = f.hint t(:required), class: "hint-format";
+    .row.mb-2
+      .col-2.p-0 = f.label t(:post_body_form), class: "form-label"
+      .col-10.p-0
+        = f.input :body, as: :text, label: false, placeholder: t(:post_body)
+        = f.hint t(:required), class: "hint-format";
+    .row.mb-2
+      .col-2.p-0 = f.label t(:image_file), class: "form-label"
+      .col-10.p-0 = f.input :image, as: :file, label: false, required: true, input_html: {class: "file-button"}
+    = f.button :submit, class: "small-button form-button"

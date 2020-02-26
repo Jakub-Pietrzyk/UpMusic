@@ -1,0 +1,49 @@
+h2 = t(:edit_account, account: resource_name.to_s.humanize)
+
+.m-4
+  = simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f|
+    = f.error_notification
+
+    .row.mb-2
+      .col-2.p-0 = f.label t(:username), class: "form-label"
+      .col-10.p-0 = f.input :name, placeholder: t(:username_placeholder), required: false, label: false
+
+    .row.mb-2
+      .col-2.p-0 = f.label t(:avatar), class: "form-label"
+      .col-10.p-0 = f.input :avatar, as: :file, required: false, label: false, input_html: {class: "file-button"}
+
+    .row.mb-2
+      .col-2.p-0 = f.label t(:email_form), class: "form-label"
+      .col-10.p-0 = f.input :email, autofocus: true, required: false, label: false
+
+    - if devise_mapping.confirmable? && resource.pending_reconfirmation?
+        = t(:waiting_confirm, email: resource.unconfirmed_email)
+
+    .row.mb-2
+      .col-2.p-0 = f.label t(:password_form), class: "form-label"
+      .col-10.p-0.align-items-top
+        = f.input :password, required: false, input_html: { autocomplete: t(:new_password) }, label: false;
+        button type="button" class="blue-button" data-container="body" data-toggle="popover" data-placement="right" data-content = "#{t(:edit_password_hint)}" = fa_icon('info-circle')
+
+
+    .row.mb-2
+      .col-2.p-0 = f.label t(:password_confirm), class: "form-label"
+      .col-10.p-0 = f.input :password_confirmation, required: false, input_html: { autocomplete: t(:new_password) }, label: false
+
+    .row.mb-2
+      .col-2.p-0 = f.label t(:current_password), class: "form-label"
+      .col-10.p-0
+        = f.input :current_password, required: true, input_html: { autocomplete: t(:current_password_auto) }, label: false;
+        = f.hint t(:required), class: "hint-format";
+        button type="button" class="blue-button" data-container="body" data-toggle="popover" data-placement="right" data-content = "#{t(:current_password_hint)}" = fa_icon('info-circle')
+
+      = f.button :submit, class: "small-button form-button"
+
+.destroy-account-row
+  h3.p-3 = t(:delete_account)
+  .pl-3
+    p
+      = t(:unhappy)
+      = link_to t(:delete_account), registration_path(resource_name), data: { confirm: t(:sure) }, method: :delete, class: "small-button"
+
+    = link_to fa_icon('arrow-left'), :back, class: "small-button", title: t(:back)

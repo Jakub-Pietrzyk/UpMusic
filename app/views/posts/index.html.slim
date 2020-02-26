@@ -1,0 +1,3 @@
+h2 class="user-title" = t(:all_posts, user: @user.name)
+.card-columns
+  = render 'post_list', collection: @posts

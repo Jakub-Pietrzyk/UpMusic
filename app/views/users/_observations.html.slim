@@ -1,0 +1,5 @@
+- pre_observation = current_user.give_observations.each.find { |observation| observation.being_observed_id == @user.id}
+- if pre_observation
+  = link_to fa_icon('bookmark'), user_observation_path(@user, pre_observation), method: :delete, class: 'unobserve-button', title: t(:unobserve)
+- else
+  = link_to fa_icon('bookmark'), user_observations_path(@user), method: :post, class: 'observe-button', title: t(:observe)

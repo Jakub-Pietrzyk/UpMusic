@@ -1,0 +1,5 @@
+- if flash[:notice] != nil;
+  .flash-format-front.d-inline-block
+    p class="notice-front d-inline" = notice
+    .d-inline
+      = link_to fa_icon("remove"), "#", class: "flash-delete-front", title: t(:close)

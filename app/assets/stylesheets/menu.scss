@@ -1,0 +1,30 @@
+ @import "config/colors";
+
+ .main-menu{
+   background-color: $dark-blue;
+ }
+ 
+ ul{
+   color: $beige;
+ }
+
+.nav-link{
+  border-radius: 25px;
+  &:hover{
+    background-color: $navbar-dark-blue;
+  }
+}
+
+.front-menu{
+  background-color: $beige;
+}
+
+.nav-front-link{
+  border-radius: 25px;
+  padding:5px;
+  transition: background-color 0.6s;
+  margin: 0 8px;
+  &:hover{
+    background-color: $beige-light;
+  }
+}

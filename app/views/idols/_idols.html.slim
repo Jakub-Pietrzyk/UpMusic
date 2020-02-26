@@ -1,0 +1,10 @@
+.row.user-row
+  .col-md
+    .row.align-items-center
+      h5[class="user-title mb-0"] = t(:idols)
+      button[type="button" data-toggle="modal" data-target="#AddIdol"]
+        = fa_icon 'plus', class: "small-button", title: t(:add_idol) if @user.id == current_user.id
+      = render 'idols/add_idol'
+
+    .row
+      = render 'idols/idols_show', collection: @user.idols if @user.idols.count > 0

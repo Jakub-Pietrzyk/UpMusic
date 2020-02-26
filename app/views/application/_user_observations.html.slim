@@ -1,0 +1,42 @@
+.text-center
+  h2 class='user-title' = t(:observations)
+  .row.observations-row
+    - if current_user.all_observations.count > 11
+      = render 'observations/all_observations', collection: current_user.all_observations[0...11]
+      button[class="col-1" type="button" data-toggle="modal" data-target="#AllObservations"]
+        = fa_icon 'ellipsis-h', class: "fa-2x blue-button", title: t(:show_all_observations)
+      = render 'observations/all_observations_modal', collection: current_user.all_observations
+    - else
+      = render 'observations/all_observations', collection: current_user.all_observations
+
+
+
+  - collection.each do |object|
+    - if object.class == Post;
+      .text-left
+        .card.observation-post
+          .card-header
+            = object.created_at.strftime("%d-%m-%Y") + " | " + object.user.name
+          .card-body
+            .card-title.row
+              h5[class="col"] = object.title
+              - if object.image.present?
+                .text-right.text-muted.col = fa_icon('file-image-o')
+            .card-text
+              .post-body
+                = object.body
+              = link_to fa_icon('eye', class: "small-button"), object, title: t(:show)
+
+
+    - else;
+      .text-left
+        .media.song-card
+          .media-left.mr-3
+            img src="#{object.image.url(:thumb)}" class="rounded-circle z-depth-0"
+          .media-body
+            .card-title.mr-3.music-title.row
+              h4 = link_to (object.title), object, class: "text-link pr-1"
+              .text-muted = " | #{object.created_at.strftime("%d-%m-%Y")}"
+            /.card-text.mb-2 = music.note
+            .card-text
+              = link_to object.user.name, user_path(object.user), class: "text-muted user-name-muted";

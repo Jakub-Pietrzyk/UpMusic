@@ -1,0 +1,15 @@
+.text-center
+  .genre-row
+    - Music.genres_to_choose.each do |genre|
+      .d-inline.col-1.genre-button
+        = link_to "#{genre}", show_by_genre_musics_path(genre: genre), class: "genre-text", title: t(:show_genre_music, genre: genre)
+
+
+.ranking-container
+  = render 'main/top_by_week_container'
+
+.ranking-container
+  = render 'main/top_users'
+
+.ranking-container
+  = render 'main/popular_songs'

@@ -1,0 +1,36 @@
+.m-4
+  = simple_form_for(@music) do |f|
+    = f.error_notification
+    .row.mb-2
+      .col-2.p-0 = f.label t(:music_title_form), class: "form-label"
+      .col-10.p-0
+        = f.input :title, label: false, required: true, input_html: {id: "music-title-test"};
+        = f.hint t(:required), class: "hint-format"
+    .row.mb-2
+      .col-2.p-0 = f.label t(:music_note_form), class: "form-label"
+      .col-10.p-0 = f.input :note, as: :text, label: false, placeholder: t(:music_note)
+    .row.mb-2
+      .col-2.p-0 = f.label t(:music_genre), class: "form-label"
+      .col-10.p-0
+        = f.input :genre, label: false, collection: Music.genres_to_choose, input_html: {class: "custom-select choose-dropdown", id: "music-genre-test"}, default: true
+        = f.hint t(:required), class: "hint-format";
+    /tutaj trzeba poprawić selecta
+    .row.mb-2
+      .col-2.p-0 = f.label t(:features_form), class: "form-label"
+      .col-10.p-0
+        = f.association :features, label: false, collection: User.possible_features(current_user), input_html: {class: "custom-select choose-dropdown"}, default: false
+    .row.mb-2
+      .col-2.p-0 = f.label t(:music_image), class: "form-label"
+      .col-10.p-0 = f.input :image, as: :file, label: false, input_html: {class: "file-button"}
+    .row.mb-2
+      .col-2.p-0 = f.label t(:audio_file), class: "form-label"
+      .col-10.p-0
+        = f.input :file, as: :file, label: false, required: true, input_html: {class: "file-button", id: "music-file-test"}
+        = f.hint t(:required), class: "hint-format";
+    .row.mb-2
+      .col-2.p-0 = f.label t(:music_video_form), class: "form-label";
+      .col-10.p-0
+        .row.align-items-center
+          = f.hint Music::YOUTUBE, class: "text-muted"
+          = f.input :yt_video, label: false, input_html: {id: "music-yt-test"};
+    = f.button :submit, class: "small-button form-button", id: "submit"

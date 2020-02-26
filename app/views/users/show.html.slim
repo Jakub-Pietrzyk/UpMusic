@@ -1,0 +1,37 @@
+.row.user-row
+  = image_tag @user.background.url, class: "user-background"
+  .col-md-2
+    = image_tag(@user.avatar.url(:big), class: "rounded-circle z-depth-0 image-border")
+    - if @user.musician?
+      - if @user.online
+        = image_tag "green_dot.png", id: "#{@user.id}", class: "active";
+      - else
+        = image_tag "green_dot.png", id: "#{@user.id}", class: "inactive";
+  .col-md-9
+    div.user-info
+      h2 class="username d-inline-block" = @user.name
+      .d-inline-block.align-top
+        - if @user.musician? and current_user.id != @user.id
+          = render 'users/observations'
+      .text-muted.mb-2
+        = @user.email + " | "
+        = render "users/social_media"
+
+      - if current_user.id == @user.id and @user.musician?
+        = link_to fa_icon('address-book', class: "small-button"), user_observations_path(current_user), title: t(:observations)
+      = link_to fa_icon('envelope', class: "small-button"), chatroom_path(@chatroom), title: "Write me" if @user != current_user
+      - if current_user == @user and current_user.musician?
+        = render 'users/chats'
+      - if current_user == @user and current_user.musician? and @user.featurings.any?
+        = render 'users/features'
+
+  .col-md-1.text-right
+    = render 'users/background_form'
+
+- if current_user.id != @user.id
+  = render 'user_dashboard'
+- else
+  - if @user.musician?
+    = render 'user_dashboard'
+  - else
+    = render 'user_observations', collection: @user.observations_objects

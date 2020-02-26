@@ -1,0 +1,4 @@
+span class="message-container"
+  .text-muted.message-date = message.created_at.strftime("%d-%m-%Y %H:%M")
+  .d-inline.font-weight-bold = message.user.name + ": "
+  = message.content

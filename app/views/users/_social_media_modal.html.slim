@@ -1,0 +1,50 @@
+.modal.fade#AddSm tabindex="-1" role="dialog" aria-labelledby="Add idol" aria-hidden="true"
+  .modal-dialog.modal-dialog-centered.modal-lg role="document"
+    .modal-content
+      .modal-header
+        h5 class="modal-title" = t(:add_sm)
+        button type="button" data-dismiss="modal"
+          = fa_icon 'remove', class: "blue-button"
+
+      .modal-body
+        = simple_form_for :user, url: add_sm_user_path(@user), method: :post do |f|
+          = f.error_notification
+
+          .row.align-items-center
+            .col-2
+              = f.label t(:facebook), required: false;
+            .col-10
+              .row.align-items-center
+                = f.hint User::FACEBOOK, class: "text-muted"
+                = f.input :fb, label: false;
+          br
+
+          .row.align-items-center
+            .col-2
+              = f.label t(:youtube), required: false;
+            .col-10
+              .row.align-items-center
+                = f.hint User::YOUTUBE, class: "text-muted"
+                = f.input :yt, label: false;
+          br
+
+          .row.align-items-center
+            .col-2
+              = f.label t(:instagram), required: false;
+            .col-10
+              .row.align-items-center
+                = f.hint User::INSTAGRAM, class: "text-muted"
+                = f.input :ig, label: false;
+          br
+
+          .row.align-items-center
+            .col-2
+              = f.label t(:twitter), required: false;
+            .col-10
+              .row.align-items-center
+                = f.hint User::TWITTER, class: "text-muted"
+                = f.input :tw, label: false;
+          br
+
+          = f.button :button, class: "submit-button" do
+            = fa_icon("check", class: "small-button")

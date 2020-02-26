@@ -1,0 +1,7 @@
+= simple_form_for([music, music.comments.build]) do |f|
+  .ml-5
+    = f.error_notification
+    .row.align-items-center
+      = f.input :body, label: false, required: true, placeholder: t(:ur_comment)
+      = f.button :button do
+        = fa_icon("check", class: "small-button")

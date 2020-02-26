@@ -1,0 +1,23 @@
+.chat-container
+  .chat-name-container.text-center
+    - if current_user == @chatroom.recipient
+      .d-inline.pr-2 = image_tag(@chatroom.sender.avatar.url(:thumb), class: "rounded-circle z-depth-0", title: "#{@chatroom.sender.name}")
+      = @chatroom.sender.name
+      - if @chatroom.sender.online
+        = image_tag "green_dot.png", id: "#{@chatroom.sender.id}", class: "active";
+      - else
+        = image_tag "green_dot.png", id: "#{@chatroom.sender.id}", class: "inactive";
+    - elsif current_user == @chatroom.sender
+      .d-inline.pr-2 = image_tag(@chatroom.recipient.avatar.url(:thumb), class: "rounded-circle z-depth-0", title: "#{@chatroom.recipient.name}")
+      = @chatroom.recipient.name
+      - if @chatroom.recipient.online
+        = image_tag "green_dot.png", id: "#{@chatroom.recipient.id}", class: "active";
+      - else
+        = image_tag "green_dot.png", id: "#{@chatroom.recipient.id}", class: "inactive";
+  #chat-content
+    = render @messages;
+  .mt-5
+    form.text-center
+      input[type="text" data-behavior="room_speaker" class="chat-input" placeholder= "#{t(:write_sth)}"]
+      input[type="hidden" id="chatroom-id" value="#{@chatroom.id}"]
+      input[type="hidden" id="message-user" value="#{current_user.id}"]

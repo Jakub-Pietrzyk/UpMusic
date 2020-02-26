@@ -1,0 +1,20 @@
+.ranking-title
+  h2.d-inline = t(:most_popular)
+  button type="button" class="d-inline align-top blue-button" style="font-size: 15px;" data-container="body" data-toggle="popover" data-placement="right" data-content = "#{t(:popular_hint)}"  = fa_icon('info-circle')
+
+button class="ranking-button" type="button" data-toggle="modal" data-target="#Popular"
+  = fa_icon 'list-ul', class: "fa-2x blue-button", title:"Top 10"
+= render 'main/popular_songs_modal', collection: @visited_musics
+
+- @visited_musics[0...3].each_with_index do |music, index|
+  div class="popular-row-#{if index > 0 then "rest"}"
+    .media.popular-song-card title = "#{music.title} | #{music.user.name}"
+      .media-left.mr-3
+        img src="#{music.image.url(:thumb)}" class="rounded-circle z-depth-0"
+      .media-body
+        .card-title.mr-3.music-title
+          .d-inline.position-ranking = (index + 1).to_s + ". "
+          h4.d-inline = link_to music.title, music, class: "text-link", title: t(:show)
+
+        .card-text
+          = link_to music.user.name, user_path(music.user), class: "text-muted user-name-muted";

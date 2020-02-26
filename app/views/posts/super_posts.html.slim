@@ -1,0 +1,16 @@
+.text-center
+  h2 = t(:creator_posts)
+  - @posts.each do |post|
+    .card.text-left.super-posts
+      .card-header
+        = post.created_at.strftime("%d-%m-%Y")
+      .card-body
+        .card-title.row
+          h5[class="col"] = post.title
+          - if post.image.present?
+            .text-right.text-muted.col = fa_icon('file-image-o')
+        .card-text
+          .post-body
+            = post.body
+          = link_to fa_icon('eye', class: "small-button"), post, title: t(:show)
+          = link_to fa_icon('remove', class: "small-button"), post, method: :delete if can? :destroy, post

@@ -1,0 +1,6 @@
+.dropdown.d-inline
+  a class="dropdown-toggle small-button" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" title= "#{t(:features)}" = t(:feat)
+  .dropdown-menu.dropdown-menu-right.dropdown-primary aria-labelledby="navbarDropdownMenuLink"
+    h6 class="dropdown-header" = t(:features)
+    - @user.featurings.each do |music|
+      = link_to music.title, music, class: "dropdown-item"

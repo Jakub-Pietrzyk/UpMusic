@@ -1,0 +1,16 @@
+.modal.fade#AllObservations tabindex="-1" role="dialog" aria-labelledby="All observations" aria-hidden="true"
+  .modal-dialog.modal-dialog-centered.modal-lg role="document"
+    .modal-content
+      .modal-header
+        h5 class="modal-title" = t(:ur_observations)
+        button type="button" data-dismiss="modal"
+          = fa_icon 'remove', class: "blue-button"
+
+      .modal-body.text-left
+        - collection.each do |observation|
+          .row.align-items-center
+            .col-2 = image_tag(observation.avatar.url(:normal), class: "rounded-circle z-depth-0")
+            .col-10
+              .observation-name = observation.name
+              .text-right = link_to fa_icon('eye', class: "small-button"), user_path(observation)
+          hr

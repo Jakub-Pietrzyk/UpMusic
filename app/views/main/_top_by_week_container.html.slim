@@ -1,0 +1,20 @@
+h2 class="ranking-title" = t(:most_upvoted_week)
+
+button class="ranking-button" type="button" data-toggle="modal" data-target="#TopWeek"
+  = fa_icon 'list-ul', class: "fa-2x blue-button", title:"Top 10"
+= render 'main/top_songs_week', collection: @week_musics
+
+.row.justify-content-center
+  - @week_musics[0..2].each_with_index do |music, index|
+      div class="column-week-#{if index == 0 then "1" else "rest"}"
+        .media
+          .media-left.mr-3
+            img src="#{music[0].image.url(:thumb)}" class="rounded-circle z-depth-0"
+          .media-body
+            .card-title.mr-3.music-title
+              .d-inline.position-ranking = (index + 1).to_s + ". "
+              h4 class="d-inline" = link_to music[0].title, music[0], class: "text-link";
+              .d-inline.text-muted = link_to (" | " + music[0].user.name), user_path(music[0].user), class: "text-muted user-name-muted"
+            .card-text
+              .text-muted = music[1].to_s + t(:upvotes_week) if music[1] > 1
+              .text-muted = music[1].to_s + t(:upvote_week) if music[1] == 1

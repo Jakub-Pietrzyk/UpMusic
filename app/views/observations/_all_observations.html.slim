@@ -1,0 +1,5 @@
+- collection.each do |observation|
+  .col-1.text-center
+    = link_to observation, class: "image-link" do
+      = image_tag(observation.avatar.url(:thumb), class: "rounded-circle z-depth-0", title: observation.name)
+      .d-block = observation.name

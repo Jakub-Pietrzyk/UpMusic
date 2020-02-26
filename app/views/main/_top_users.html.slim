@@ -1,0 +1,12 @@
+.ranking-title
+  h2.d-inline = t(:most_popular_users)
+  button type="button" class="d-inline align-top blue-button" style="font-size: 15px;" data-container="body" data-toggle="popover" data-placement="right" data-content = "#{t(:popular_hint)}" = fa_icon('info-circle')
+
+.row.mt-3
+  - User.best_by_visited_ratio.each_with_index do |user, index|
+    .col-2.popular-user-container
+      = link_to user, class: "text-link" do
+        = image_tag(user.avatar.url(:normal), class: "rounded-circle z-depth-0", title: user.name)
+        .d-block
+          .d-inline.font-weight-bold = "#{index + 1}. "
+          .d-inline = "| #{user.name}"

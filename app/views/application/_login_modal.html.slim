@@ -1,0 +1,28 @@
+.modal.fade#LogIn tabindex="-1" role="dialog" aria-labelledby="Log in" aria-hidden="true"
+  .modal-dialog.modal-dialog-centered.modal-md[role="document"]
+    .modal-content
+      .modal-header
+        h5 class="modal-title" = t(:log_in)
+        button type="button" data-dismiss="modal"
+          = fa_icon 'remove', class: "blue-button"
+
+      .modal-body.text-center
+        = simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+          = f.error_notification
+
+
+          .d-block = f.label t(:email);
+          .mb-2 = f.input :email, label: false, autofocus: true, input_html: { autocomplete: t(:email), id: "login-email" }
+          br
+
+          .d-block = f.label t(:password);
+          .mb-2 = f.input :password, label: false, input_html: { autocomplete: "current-password", id: "login-password" }
+          br
+
+          .row.justify-content-center
+            .mr-1 = f.label t(:remember);
+            = f.input :remember_me, label: false, as: :boolean, input_html: {style: "width: auto !important;"} if devise_mapping.rememberable?
+          br
+          = f.submit t(:log_in), class: "small-button submit-button", id: "login-submit";
+        br
+        = render "devise/shared/links"

@@ -1,0 +1,22 @@
+.modal.fade#AllMusic tabindex="-1" role="dialog" aria-labelledby="All music" aria-hidden="true"
+  .modal-dialog.modal-dialog-centered.modal-lg role="document"
+    .modal-content
+      .modal-header
+        h5 class="modal-title" = t(:results)
+        button type="button" data-dismiss="modal"
+          = fa_icon 'remove', class: "blue-button"
+
+      .modal-body.text-left
+        - collection.each do |music|
+          .row
+            .media.result-music
+              .media-left.mr-3 title = "#{music.title} | #{music.user.name}"
+                img src="#{music.image.url(:thumb)}" class="rounded-circle z-depth-0"
+              .media-body
+                .card-title.mr-3.music-title.row
+                  h4.col-11 = link_to music.title, music, class: "text-link", title: t(:show)
+                  .col-1.text-right= link_to fa_icon('remove'), music, method: :delete, class: "blue-button", title: t(:delete) if can? :destroy, music
+                /.card-text.mb-2 = music.note
+                .card-text
+                  = link_to music.user.name, user_path(music.user), class: "text-muted user-name-muted";
+          hr

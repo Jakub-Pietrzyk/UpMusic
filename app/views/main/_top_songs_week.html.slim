@@ -1,0 +1,23 @@
+.modal.fade#TopWeek tabindex="-1" role="dialog" aria-labelledby="Top songs of the week" aria-hidden="true"
+  .modal-dialog.modal-dialog-centered.modal-lg role="document"
+    .modal-content
+      .modal-header
+        h5 class="modal-title" = t(:top_week)
+        button type="button" data-dismiss="modal"
+          = fa_icon 'remove', class: "blue-button"
+
+      .modal-body.text-left
+        - collection.each_with_index do |music, index|
+          .row
+            .media
+              .media-left.mr-3
+                img src="#{music[0].image.url(:thumb)}" class="rounded-circle z-depth-0 top-songs-image"
+              .media-body
+                .card-title.mr-3.music-title
+                  .d-inline.week-link = (index + 1).to_s + ". "
+                  h4 class="d-inline" = link_to music[0].title, music[0], class: "text-link week-link";
+                  .d-inline.text-muted = link_to (" | " + music[0].user.name), user_path(music[0].user), class: "text-muted user-name-muted"
+                .card-text
+                  .text-muted = music[1].to_s + t(:upvotes_week) if music[1] > 1
+                  .text-muted = music[1].to_s + t(:upvote_week) if music[1] == 1
+          hr

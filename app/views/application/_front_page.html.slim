@@ -1,0 +1,17 @@
+nav.navbar.navbar-expand-lg.front-menu
+  .navbar-brand.text-link
+    = link_to  log_path, class: "text-link", title: t(:main) do
+      = t(:web_name)
+  .collapse.navbar-collapse#basicExampleNav
+    ul class="navbar-nav ml-auto align-items-center"
+      li class="nav-item"
+        = link_to fa_icon('google'), user_google_oauth2_omniauth_authorize_path, class: "text-link nav-front-link", title: t(:log_in_google), id: "log-by-google";
+      li class="nav-item"
+        button type="button" data-toggle="modal" data-target="#LogIn" class="text-link nav-front-link" id="log in" = t(:log_in)
+      li class="nav-item"
+        button type="button" data-toggle="modal" data-target="#Register" class="text-link nav-front-link" = fa_icon 'sign-in' ,text: " | #{t(:register)}"
+
+= render 'login_modal'
+= render 'register_modal'
+
+= render 'flash'

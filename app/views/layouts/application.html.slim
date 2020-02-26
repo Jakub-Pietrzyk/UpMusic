@@ -1,0 +1,38 @@
+doctype html
+html
+  head
+    title = t(:web_name)
+    = csrf_meta_tags
+    = csp_meta_tag
+    = action_cable_meta_tag
+
+    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
+    = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
+
+  body
+    .content
+      - if user_signed_in?
+        = render 'layouts/menu'
+
+        - if flash[:notice] != nil
+          .flash-format.d-inline-block
+            p class="notice d-inline m-0" = notice
+            .d-inline
+              = link_to fa_icon("remove"), "#", class: "flash-delete", title: t(:close)
+        - if flash[:alert] != nil;
+          .flash-format.d-inline-block
+            p class="alert d-inline m-0" = alert
+            .d-inline
+              = link_to fa_icon("remove"), "#", class: "flash-delete", title: t(:close)
+
+      - else
+        = render 'front_page'
+
+
+
+
+      .yield
+        = yield
+
+      footer.text-center
+         = t(:copyright) + " " + t(:creator)

@@ -1,0 +1,21 @@
+.modal.fade#Popular tabindex="-1" role="dialog" aria-labelledby="Popular songs" aria-hidden="true"
+  .modal-dialog.modal-dialog-centered.modal-lg role="document"
+    .modal-content
+      .modal-header
+        h5 class="modal-title" = t(:most_popular)
+        button type="button" data-dismiss="modal"
+          = fa_icon 'remove', class: "blue-button"
+
+      .modal-body.text-left
+        - collection.each_with_index do |music, index|
+          .row
+            .media
+              .media-left.mr-3
+                img src="#{music.image.url(:thumb)}" class="rounded-circle z-depth-0 top-songs-image"
+              .media-body
+                .card-title.mr-3.music-title
+                  .d-inline.week-link = (index + 1).to_s + ". "
+                  h4 class="d-inline" = link_to music.title, music, class: "text-link week-link";
+                .card-text
+                  .text-muted = link_to music.user.name, user_path(music.user), class: "text-muted user-name-muted"
+          hr

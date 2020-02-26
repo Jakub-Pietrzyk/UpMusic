@@ -1,0 +1,25 @@
+@import "config/colors";
+@import "config/mixins";
+
+.genre-row{
+  background-color: $beige;
+  display: inline-block;
+  border-radius: 25px;
+  margin-bottom: 70px;
+}
+
+.genre-button{
+  margin: 0 5px;
+  border-radius: 25px;
+  will-change: background-color;
+  -webkit-transition: background-color 0.5s;
+  transition: background-color 0.3s;
+  &:hover{
+    background-color: $beige-light;
+  }
+}
+
+.genre-text{
+  @include title-link($dark-blue);
+  font-size: 17px;
+}

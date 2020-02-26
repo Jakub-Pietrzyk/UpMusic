@@ -1,0 +1,14 @@
+@import "config/colors";
+@import "config/mixins";
+
+.comment-show{
+  border: 2px solid $beige;
+  border-radius: 25px;
+  padding: 10px;
+  margin-bottom: 10px;
+  word-wrap: break-word;
+}
+
+.comment-date{
+  @include small-date();
+}

@@ -1,0 +1,45 @@
+@import "config/colors";
+@import "config/mixins";
+
+input{
+  padding: 5px;
+  border: 2px solid $beige;
+  border-radius: 25px;
+  color: $dark-blue;
+  width: 300px;
+  position: relative;
+}
+
+textarea{
+  padding: 5px;
+  border: 2px solid $beige;
+  border-radius: 25px;
+  border-bottom-right-radius: 0px;
+  color: $dark-blue;
+  width: 500px;
+}
+
+.choose-dropdown{
+  background-color: $beige !important;
+  border-radius: 25px !important;
+  border: 2px solid $beige !important;
+  color: $dark-blue !important;
+  padding: 5px !important;
+  width: 125px !important;
+  @include focus();
+}
+
+.hint-format{
+  position: absolute;
+  left: -7px;
+}
+
+.form-label{
+  font-size: 20px;
+}
+
+.file-button{
+  border: none !important;
+  border-radius: 0;
+  border-bottom: 2px solid $beige !important;
+}

@@ -1,0 +1,12 @@
+.row.mb-4.align-items-top
+  .col-11
+    h2.m-3 = t(:genre, genre: params[:genre])
+  / not need to reload page to get new random music
+  .col-1
+    h4.text-right = link_to fa_icon("random"), Music.random_by_genre(params[:genre]), title: t(:random_genre, genre: params[:genre]), class: "blue-button"
+
+.ranking-container
+  = render 'main/top_by_week_container'
+
+.ranking-container
+  = render 'main/popular_songs'

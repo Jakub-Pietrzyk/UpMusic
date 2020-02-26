@@ -1,0 +1,23 @@
+@import "config/colors";
+
+.chat-container{
+  width: 960px;
+  margin: 0 auto;
+  height: 80vh;
+}
+
+.chat-name-container{
+  padding: 10px;
+  border-bottom: 3px solid $beige;
+  font-size: 30px;
+}
+
+#chat-content{
+  margin-top: 40px;
+  height: 65%;
+  overflow-y: scroll;
+}
+
+.chat-input{
+  width: 50% !important;
+}

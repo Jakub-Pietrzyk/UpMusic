@@ -1,0 +1,35 @@
+@import "config/colors";
+@import "config/mixins";
+
+.flash-format{
+  background-color: $beige;
+  padding: 10px 20px;
+  font-size: 17px;
+  width: 100% !important;
+  position: relative;
+  top: 0;
+}
+
+.flash-delete{
+  float: right;
+  margin-right: 0.5%;
+  @include title-link($dark-blue);
+}
+
+.flash-format-front{
+  background-color: $dark-blue;
+  padding: 10px 20px;
+  font-size: 17px;
+  width: 100% !important;
+}
+
+.notice-front{
+  margin: 0 !important;
+  color: $beige;
+}
+
+.flash-delete-front{
+  float: right;
+  margin-right: 2px;
+  @include title-link($beige);
+}

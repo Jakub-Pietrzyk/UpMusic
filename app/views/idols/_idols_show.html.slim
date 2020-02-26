@@ -1,0 +1,11 @@
+- collection.each do |idol|
+  - if idol.name.present?
+    .col-1.text-center.mt-2.p-1
+      - if idol.page != nil
+        = link_to idol.link_to_idol_page, class: "image-link", target: 'blank' do
+          = image_tag(idol.image.url(:thumb), class: "rounded-circle z-depth-0", title: idol.name)
+          .d-block = idol.name
+      - else;
+        = image_tag(idol.image.url(:thumb), class: "rounded-circle z-depth-0", title: idol.name)
+        .d-block = idol.name
+      = link_to fa_icon('remove'), [idol.user, idol], method: :delete, class: "text-right blue-button delete-idol", title: t(:delete_idol) if can?(:destroy, idol)

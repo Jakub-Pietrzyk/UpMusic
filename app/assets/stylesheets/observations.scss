@@ -1,0 +1,16 @@
+@import "config/colors";
+
+.observation-post, .observations-row{
+  width: 95%;
+  margin: 20px auto !important;
+}
+
+.observations-row{
+  border-radius: 25px;
+  border: 2px solid $dark-blue;
+  padding: 10px;
+}
+
+.observation-name{
+  font-size: 20px;
+}
